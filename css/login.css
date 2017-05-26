@@ -1,0 +1,15 @@
+.footer-login{
+	text-align: center;
+	color: #666;
+}
+.btn-login{
+    width: 100%;
+    background-image: linear-gradient(#e2232c, #ca1823);
+    border: none;
+    color: white;
+    height: 34px;
+    line-height: 34px ;
+}
+.btn-login:hover{
+    background-image: linear-gradient(#ff242f, #da1922);
+}

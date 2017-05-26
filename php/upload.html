@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>校淘网json生成</title>
+<script src="../js/jquery-1.11.3.js" ></script>
+<script>
+$(function(){
+	$("input[type=button]").click(function(){
+		var strtit = $("input").eq(0).val();
+		var strpri = $("input").eq(1).val();
+		var strvol = $("input").eq(2).val();
+		var strsco = $("input").eq(3).val();
+		var stropt = $("input").eq(4).val();
+		var strsho = $("input").eq(5).val();
+		var strimg = $("input").eq(6).val();
+		var strimgs = $("input").eq(7).val();
+		var strdet = $("input").eq(8).val();
+		var strcom = $("input").eq(9).val();
+		var url = "upload.php?ac=0";
+		$.post(url, {
+			"title":strtit, 
+			"price":strpri,
+			"volume":strvol,
+			"score":strsco,
+			"options":stropt,
+			"shop":strsho,
+			"img":strimg,
+			"imgs":strimgs,
+			"detail":strdet,
+			"comment":strcom
+		}, function(str){
+			alert(str);
+		});
+	});
+	
+	
+	
+//	$("input").eq(0).blur(function(){
+	$("#chaxun").click(function(){
+		var url = "upload.php?ac=1&username="+$("input").eq(0).val();
+		$.get(url, function( str ){
+			$("span").html( str=="0" ? "没有" : "有" )
+		});
+	});
+	
+});
+</script>
+</head>
+<body>
+	
+1标题：<input type="text" /><span></span><br><br>		
+2价格：<input type="text" /><br>	<br>	
+3数量：<input type="text" /><br>	<br>	
+4评价：<input type="text" /><br>	<br>	
+5选项：<input type="text" /><br>	<br>	
+6店名：<input type="text" /><br>	<br>	
+7主图：<input type="text" /><br>	<br>	
+8小图：<input type="text" /><br>	<br>	
+9详图：<input type="text" /><br>	<br>	
+0评价：<input type="text" /><br>	<br>	
+
+<input type="button" value="提交" />	
+<!--<input type="button" value="查询" id="chaxun"/>-->	
+
+	
+</body>
+</html>

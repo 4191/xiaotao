@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<link rel="stylesheet" href="css/css.css" />
+<link rel="stylesheet" href="css/sign.css" />
+<link rel="stylesheet" href="css/stylesheets/layout.css" />
+<script src="js/jquery-1.11.3.js"></script>
+<!--<script src="js/js.js"></script>-->
+<script>
+$(function(){
+	
+	// 登录名验证
+	$("input").eq(0).blur(function(){
+		if($("input").eq(0).val() == ""){
+			return false;
+		}
+		if(!/^1[34578]\d{9}$/.test($("input").eq(0).val()) && $("input").eq(0).val() !=""){
+			alert("只能以手机号注册！");
+		}else{
+			var url = "chk.php?ac=1&username="+$(".form-username").eq(0).val();
+			$.get(url, function( str ){
+				$(".caution-user").css( str=="0" ? {"display":"none"} : {"display":"block"} )
+			});
+			
+			$(".verify-phone").css({"display":"none"});
+		}
+	});
+
+	// 密码验证
+	$("input").eq(1).blur(function(){
+		if( $("input").eq(1).val().length < 6 || $("input").eq(1).val().length >20 ){
+			$(".caution-pwd1").css("display","block");
+		}else{
+			$(".caution-pwd1").css("display","none");
+		};
+	});
+	//if( $("input").eq(1).val().length > 6 & $("input").eq(1).val().length < 20 ){
+	$("input").eq(1).keyup(function(){
+		var txt = $(this).val();
+		var s = 0;
+		if( $("input").eq(1).val().length >= 6 && $("input").eq(1).val().length <= 20 ){
+			if( /[a-zA-Z]/.test(txt) ){
+				s++;
+			};
+			if( /[0-9]/.test(txt) ){
+				s++;
+			};
+			if( /[^0-9a-zA-Z]/.test(txt) ){
+				s++;
+			};
+			if( s == 1 ){
+				$(".weak").css("background","#e22335");
+			}
+			if( s == 2 ){
+				$(".weak").css("background","#e22335");
+				$(".good").css("background","#ff8135");
+			}else{
+				$(".good").css("background","#ccc");
+			}
+			if( s == 3 ){
+				$(".weak").css("background","#e22335");
+				$(".good").css("background","#ff8135");
+				$(".strong").css("background","#8AB65D");
+			}else{
+				$(".strong").css("background","#ccc");
+			}
+		}else{
+			$(".weak").css("background","#ccc");
+			$(".good").css("background","#ccc");
+			$(".strong").css("background","#ccc");
+		}
+	});
+
+	// 确认密码
+	$("input").eq(2).blur(function(){
+		$(".caution-pwd2").css( $("input").eq(1).val() == $("input").eq(2).val() ? {"display":"none"} : {"display":"block"} )
+	});
+	
+	// 验证码验证
+	$("input").eq(3).blur(function(){
+		$(".caution-verify").css( $("input").eq(3).val() != "" ? {"display":"none"} : {"display":"block"} )
+	});
+	$("#verify-phone").blur(function(){
+		$(".caution-phone").css( $("#verify-phone").val() != "" ? {"display":"none"} : {"display":"block"} )
+	});
+	
+	// 点击确认注册按钮验证
+	$("#sign-btn").click(function(){
+		var arr = [false,false,false,false,false];
+		if($("input").eq(0).val() == ""){
+			alert("只能以手机号注册！");
+			arr[0] = true;
+			//return false;
+			//$("input[type=button]").click(null);
+			$( "input[type=button]" ).unbind("click");
+		}
+		if($("input").eq(1).val().length < 6 & $("input").eq(1).val().length >20){
+			$(".caution-pwd1").css({"display":"block"});
+			//return false;
+			arr[1] = true;
+		}
+		if( $("input").eq(2).val() != $("input").eq(1).val()){
+			$(".caution-pwd2").css({"display":"block"});
+			//return false;
+			arr[2] = true;
+		}
+		if( $("input").eq(3).val() == ""){
+			$(".caution-verify").css({"display":"block"});
+			//return false;
+			arr[3] = true;
+		}
+		if( $("#verify-phone").val() == "" ){
+			$(".caution-phone").css({"display":"block"});
+			//return false;
+			arr[4] = true;
+		}
+		if(arr == "false,false,false,false,false"){
+			var struser = $(".form-username").eq(0).val();
+			var strpass = $(".form-password").eq(1).val();
+			var url = "chk.php?ac=0";
+			$.post(url, {"username":struser, "password":strpass}, function(str){
+				var strs = "注册完成，点击确定跳转到登录页面";
+				if(!alert(strs)){
+					window.location = "login.html";
+				}
+			});
+		}
+		
+	});
+	
+});
+</script>
+</head>
+<body>
+<!--header-->
+<div id="header" class="header">
+	<div class="wrap1190 clearfix">
+		<div class="logo fl">
+			<a href="index.html"><img src="img/d40027d08d72dc2172d174030f5bff70f159769b.gif" alt="LOGO"></a>
+		</div>
+	</div>
+</div>
+<!--main-->
+<div class="main-sign">
+<h1 class="sign-tit">用户注册</h1>	
+<form class="form-sign">
+	<ul>
+		<li class="clearfix">
+			<label><em>*</em>登录名</label>
+			<input type="text" class="form-username" placeholder="请输入11位手机号">
+			<i class="icon-user input-figure"></i>
+			<span id=""></span>
+			<span class="icon-alert caution-user">该用户名已被使用</span>
+		</li>
+		<li class="clearfix">
+			<label><em>*</em>设置密码</label>
+			<input type="password" class="form-password" placeholder="6-20个字符">
+			<i class="icon-lock input-figure"></i>
+			<div class="password-check">
+	          	<q>安全程度</q>
+	          	<span class="progress">
+	            	<em class="weak">弱</em><em class="good">中</em><em class="strong">强</em>
+	          	</span>
+	        </div>
+			<span class="icon-alert caution-pwd1">请填写密码，6-20个字符</span>
+		</li>
+		<li class="clearfix">
+			<label><em>*</em>确认密码</label>
+			<input type="password" class="form-password" placeholder="再次填写密码">
+			<i class="icon-lock input-figure"></i>
+			<span class="icon-alert caution-pwd2">密码与确认密码不相符，请重新填写</span>
+		</li>
+		<li class="form-row verify-code action-verifycode clearfix">
+	    	<label class="form-label"><em>*</em>验证码</label>
+	      	<span class="form-act">
+	        	<input type="text" class="verify-input">
+	        	<img align="absmiddle" class="auto-change-verify-handle" id="membervocde" src="img/vcode.gif" alt="验证码" width="70" height="30">
+	       		<div class="inline auto-change-verify-handle">
+	        		<div>看不清？</div>
+	        		<a href="javascript:void(0);">换一张</a>
+	        	</div>
+	      	</span>
+			<span class="icon-alert caution-verify">此项必填</span>
+	    </li>
+	    <li class="form-row verify-phone" style="display: none;">
+	    	<label class="form-label"><em>*</em>手机验证码</label>
+			<span class="form-act">
+				<input class="verify-input input-st" id="verify-phone" value="1234" name="vcode" type="text">
+				<a class="btn btn-simple action-get-verifycode" href="#">发送验证码</a>
+			</span>
+			<span class="icon-alert caution-phone">此项必填</span>
+	    </li>
+	    <li class="clearfix">
+	    	<span class="form-act">
+		    	<input type="checkbox" checked="checked" id="for_license" class="x-checkbox" />
+		    	<label for="for_license">
+		    		我已阅读并同意
+			    	<a href="javascript:void();" class="sign-proto">《会员注册协议》</a>
+		    	</label>
+		    </span>
+			<span class="icon-alert caution-ok">请选择同意</span>
+	    </li>
+	    <li class="clearfix" id="sign-btn">
+	    	<!--<button type="submit" disabled="disabled">立即注册</button>-->
+	    	<input type="button" class="sign-btn" value="立即注册"/>
+	    </li>
+	    <li class="clearfix"><a href="#" class="sign-login">已有帐号？去登录 »</a></li>
+	</ul>
+</form>
+</div>
+<!--footer-->
+<div class="footer-sign">
+	<div style="text-align: center;">
+		苏ICP备15034060号
+		<a href="#" target="_blank" title="站长统计">
+			<img src="img/pic1.gif" />
+		</a>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>校淘网－简单购快乐！校园配送｜快乐购物｜正品保证｜天天低价</title>
+<meta name="keywords" content="校淘网,全网最低价,大学生专属,校园配送" />
+<meta name="description" content="校淘网－简单购快乐！校园配送｜快乐购物｜正品保证｜天天低价" />
+<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="css/css.css" />
+<link rel="stylesheet" href="css/stylesheets/layout.css" />
+<link rel="stylesheet" href="css/login.css" />
+<script src="js/jquery-1.11.3.js" ></script>
+<script src="js/msg.js" ></script>
+<script src="js/cookie.js"></script>
+<script src="js/query.js"></script>
+</head>
+<body>
+<!-- header -->
+<div id="header" class="header">
+	<div class="wrap1190 clearfix">
+		<div class="logo fl">
+			<a href="./"><img src="img/d40027d08d72dc2172d174030f5bff70f159769b.gif" alt="LOGO"></a>
+		</div>
+	</div>
+</div>
+
+<!--login-main-->
+<div class="login-main" style="background:url('img/login.jpg'); background-size: cover; background-position: center">
+	<div class="wrap-lg clearfix">
+	    <div class="col-lg-9">&nbsp;</div>
+	    	<div class="col-lg-6 login">
+		    	<div class="form-vertical">
+					<!--<input type="hidden" name="next_page" value="cart.html">
+					<input type="hidden" name="key" value="topc_signin">
+					<input type="hidden" name="last_page" value="">-->
+		  			<div class="login-header">
+		    			<div class="header-keyname">会员登录</div>
+			    		<div class="go-register"><a class="link-color" href="sign.html">免费注册 &gt;</a></div>
+			  		</div>
+					<div class="error hide"></div>
+					<div class="form-control">
+				    <ul>
+				    	<li class="form-row">
+				        	<span class="form-act has-figure">
+				        		<input type="text" class="input-block action-account-check" name="account" id="" value="" placeholder="用户名/邮箱地址/已验证手机号" required="" data-caution="请填写登录帐号" autofocus="autofocus">
+				        		<i class="icon-user input-figure"></i>
+				        	</span>
+				        </li>
+				        <li class="form-row">
+				        	<span class="form-act has-figure">
+				            	<input type="password" class="input-block" name="password" id="" placeholder="填写密码" required="" data-caution="请填写密码">
+				            	<i class="icon-lock input-figure"></i>
+				            </span>
+				        </li>
+				        <li class="form-row form-row-text">
+					        <div class="auto-login">
+					            <span class="check-wrap">
+					            	<input type="checkbox" name="remember" class="action-remember-account" id="for_autosignin">
+					            	<label for="for_autosignin">下次自动登录</label>
+					            </span>
+					        </div>
+					        <div class="forget-or-signin">
+					            <a class="link-color" href="sign.html">忘记密码？</a>
+					        </div>
+				        </li>
+				        <li class="form-row">
+				        	<button type="submit" class="btn-login">登录</button>
+				        </li>
+				    </ul>
+				</div>
+			</div>
+				<div class="trust-login">
+				    <div class="trust-login-keyname">其它方式登录</div>
+				    <div class="trust-login-default">
+			    </div>
+			</div>
+		</div>
+    </div>
+</div>
+
+<!--footer-->
+<div class="footer" style="background: white;">
+	<div class="wrap1190">
+		<div class="footer-login">
+			苏ICP备15034060号
+			<a href="#" target="_blank" title="站长统计">
+				<img src="img/pic1.gif" />
+			</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<script>
+$(function(){
+	$(".btn-login").click(function(){
+		var loginuser = $(".input-block").eq(0).val();
+		var loginpwd = $(".input-block").eq(1).val();
+		var url = "chk.php?ac=2";
+		$.post(url, {"loginuser":loginuser, "loginpwd":loginpwd}, function(str){
+			if(str == loginpwd){
+//				setCookie("loginuser","{'loginuser' : "+loginuser+", 'loginpwd' : "+loginpwd+"}",10);
+				setCookie("loginuser",'{"loginuser" : "'+loginuser+'", "loginpwd" : "'+loginpwd+'"}',10);
+//				window.history.go(-1);
+				window.location = "index.html";
+			}else{
+				var strs = "用户名或密码错误";
+				alert(strs);
+			}
+				
+		});
+	});
+});
+</script>

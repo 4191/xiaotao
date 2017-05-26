@@ -1,0 +1,201 @@
+.list-main{
+	background: #f8f8f8;
+    padding: 30px 0;
+}
+.list-tit{
+    padding: 10px 0;
+    color: #333;
+    font-size: 14px;
+}
+.list-tit a{
+    font-weight: 700;
+    font-size: 15px;
+    color:#333;
+}
+.list-tit span{
+    font-size: 14px;
+    color: #333;
+    padding: 0 4px;
+}
+.list-tit em{
+	color: #8c8c8c;
+}
+.list-filter{
+    border: 1px solid #e8e8e8;
+    border-radius: 0 0 3px 3px;
+    margin: 0 0 10px 10px;
+}
+.list-filter-tit{
+	background: #e8e8e8;
+	line-height:36px;
+	padding-left: 10px;
+}
+.list-filter-tit span{
+	color: red;
+}
+.list-filter-body{
+	line-height:24px;
+	padding: 10px;
+	background: #fff;
+	overflow: hidden;
+}
+.list-filter-body>dl *{
+	float: left;
+}
+.list-filter-body>dl>dt{
+    color: #666;
+    padding: 0 25px 0 5px;
+}
+.list-filter-body>dl>dd{
+    color: #333;
+    white-space: nowrap;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right:6px;
+    padding: 0 5px;
+}
+.list-filter-body>dl>dd:hover{
+	color:#e22335;
+}
+.list-filter-body>dl>dd.filteron {
+    background: #e22335;
+    color: #fff;
+    margin-right: 6px;
+    padding: 0 5px;
+}
+.list-filter-body>dl>dd.filteron>a{
+	color: #fff;
+    margin-right: 10px;
+    display:inline-block;
+}
+
+.sortbar{
+	margin:0 0 10px 10px;
+}
+.btn{
+    border: 0 none;
+    background-color: transparent;
+    padding: 0;
+    outline: none;
+}
+a.btn {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    color: #333333;
+}
+.sortbar-left>span{
+	padding-right: 10px;
+}
+.sortbar-left>label{
+	padding-left: 10px;
+}
+.sortbar .btn.on span {
+    background: #d62528;
+    border: none;
+    color: #fff;
+}
+.btn > span > span {
+    padding-right: 1em;
+    line-height: 34px;
+    display: block;
+    height: 100%;
+}
+
+
+.list-body{
+	padding:10px 0 10px 5px;
+	/*background: red;*/
+}
+.list-body>li{
+    float: left;
+    width: 230px;
+    height: 347px;
+    margin: 0 5px;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    /*background: yellow;*/
+}
+.list-body>li>div{
+	width:230px;
+	height: 230px;
+	overflow: hidden;
+	position:relative;
+}
+.list-body>li>img{
+	cursor: pointer;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.list-body>li>a{
+    display: block;
+    height: 36px;
+    margin: 6px 0 5px 0;
+    padding: 0 8px;
+    overflow: hidden;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.3;
+}
+.list-body>li>em{
+	display:block;
+    font-size: 14px;
+    font-family: '华文细黑';
+    border: 1px #e12334 solid;
+    border-radius: 5px;
+    padding: 0 2px;
+    color: #e12334;
+    width: 30px;
+    margin: 0 0 5px 8px;
+    cursor: default;
+}
+.list-body>li>span{
+	margin-bottom: 5px;
+	display:block;
+    font-size: 18px;
+    font-family: helvetica;
+    color: red;
+    padding-left:8px;
+}
+.list-body>li>div>span{
+	display:block;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    height: 36px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -36px;
+    background: rgba(0, 0, 0, 0.5);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+    text-align: center;
+    color: #fff;
+    line-height: 36px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.list-body>li>div>span:hover{
+    background-color: #ca1823;
+}
+
+
+
+.message-body {
+  background-color: #fff;
+  /*background-color: #eba5a3;*/
+  max-width: 242px;
+  padding: 30px 40px;
+  border: 1px solid #a3afb9;
+  -webkit-box-shadow: 2px 2px 1px rgba(150, 150, 150, 0.5);
+  -moz-box-shadow: 2px 2px 1px rgba(150, 150, 150, 0.5);
+  box-shadow: 2px 2px 1px rgba(150, 150, 150, 0.5);
+  font-size: 24px;
+  font-family: "微软雅黑";
+  text-align: center;
+  color: #d9534f;
+  display: table-cell;
+  vertical-align: middle;
+  line-height: 30px;
+}
